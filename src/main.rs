@@ -35,6 +35,9 @@ fn main() -> ! {
         delay.delay_ms(1_u32);
         pin.set_low();
         delay.delay_ms(1_u32);
-        let is_high = pin.with_input(|x| x.is_high());
+        // let is_high = pin.with_input(|x| x.is_high());
+        let input = pin.into_floating_input();
+        input.is_high();
+        pin = input.into_push_pull_output();
     }
 }
