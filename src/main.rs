@@ -29,12 +29,43 @@ fn main() -> ! {
 
     let mut pin = gpioa.pa0.into_push_pull_output();
 
-    loop {
-        delay.delay_ms(1_u32);
-        pin.set_high();
-        delay.delay_ms(1_u32);
-        pin.set_low();
-        delay.delay_ms(1_u32);
-        let is_high = pin.with_input(|x| x.is_high());
-    }
+    delay.delay_ms(1_u32);
+    pin.set_high();
+    delay.delay_ms(1_u32);
+    pin.set_low();
+    delay.delay_ms(1_u32);
+    info!("Pre");
+    info!("MODER: {:b}", unsafe {
+        (*stm32h7xx_hal::pac::GPIOA::ptr()).moder.read().bits()
+    });
+    info!("OTYPER: {:X}", unsafe {
+        (*stm32h7xx_hal::pac::GPIOA::ptr()).otyper.read().bits()
+    });
+    info!("AFRL: {:X}", unsafe {
+        (*stm32h7xx_hal::pac::GPIOA::ptr()).afrl.read().bits()
+    });
+    info!("AFRH: {:X}", unsafe {
+        (*stm32h7xx_hal::pac::GPIOA::ptr()).afrh.read().bits()
+    });
+    let is_high = pin.with_input(|x| x.is_high());
+    info!("Post");
+    info!("MODER: {:b}", unsafe {
+        (*stm32h7xx_hal::pac::GPIOA::ptr()).moder.read().bits()
+    });
+    info!("OTYPER: {:X}", unsafe {
+        (*stm32h7xx_hal::pac::GPIOA::ptr()).otyper.read().bits()
+    });
+    info!("AFRL: {:X}", unsafe {
+        (*stm32h7xx_hal::pac::GPIOA::ptr()).afrl.read().bits()
+    });
+    info!("AFRH: {:X}", unsafe {
+        (*stm32h7xx_hal::pac::GPIOA::ptr()).afrh.read().bits()
+    });
+    delay.delay_ms(1_u32);
+    pin.set_high();
+    delay.delay_ms(1_u32);
+    pin.set_low();
+    delay.delay_ms(1_u32);
+
+    loop {}
 }
