@@ -9,17 +9,7 @@ edition = "2021"
 cortex-m = "0.7.1"
 cortex-m-rt = "0.6.12"
 stm32h7xx-hal = {version = "0.12.1", features = ["stm32h735","rt"]}
-embedded-hal = {version = "0.2.7"}
 log = "0.4.11"
-nb = "1.0.0"
 
-cortex-m-rtic = { version = "1.0.0" }
-# panic-halt = "0.2.0"
-usb-device = "0.2.5"
-usbd-serial = "0.1.0"
-replace_with = { version = "0.1.7", default-features= false, features=["panic_abort"] }
-
-# panic_rtt = { version = "0.3.0" }
 panic-rtt-target = { version = "0.1.0", features = ["cortex-m"] }
 rtt-target = { version = "0.3.1", features = ["cortex-m"] }
-num_enum = { version = "0.5.7", default-features= false}
